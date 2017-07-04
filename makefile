@@ -24,7 +24,7 @@ $(OBJDIR)/%.o: %.c
 	$(CC) -c $< $(CFLAGS) -o $@
 
 .PHONY:
-all:    make_dirs $(BINARY) install
+all:    make_dirs $(BINARY)
 
 $(BINARY): $(BINARY_OBJ)
 	$(CC) -o $@ $^ $(LDFLAGS) 
@@ -42,9 +42,7 @@ make_dirs:
 
 .PHONY:
 install:
-	@if [ -d ~/bin ]; then \
-		install $(BINARY) ~/bin; \
-	else \
-		sudo install $(BINARY) /usr/local/bin; \
+	@if [ -d $(BINDIR) ]; then \
+		install $(BINARY) /usr/local/bin; \
 	fi 
 
